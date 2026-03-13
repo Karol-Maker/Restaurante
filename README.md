@@ -67,4 +67,5 @@ antes de alterações: git status
 Quando outra pessoa baixar o projeto: composer install
 cp .env.example .env
 php artisan key:generate
+SE usar BANCO DE DADOS: php artisan migrate
 */
