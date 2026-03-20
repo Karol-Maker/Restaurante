@@ -2,64 +2,114 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prato;
+use Illuminate\Http\Request;
+use App\Models\pratos;
 
-class PratoController extends Controller
+
+class pratosController extends Controller
 {
-    public function index()
+
+    function index()
     {
-        $pratos = Prato::all();
+        $dados = pratos::all(); //select * from pratos
 
-        return view('pratos.index', ['pratos' => $pratos]);
-    }
-       public function create()
-    {
-        return view('prato.form');
-    }
+        // dd($dados);
+        //var_dump($dados);
+        //  exit;
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required',
-            'telefone' => 'required',
-        ]);
-
-        prato::create($request->all());
-
-        return redirect('prato');
+        return view('pratos.list', ['dados' => $dados]);
     }
 
-    public function edit($id)
+    function create()
     {
-        $prato = prato::find($id);
-        return view('prato.form', compact('prato'));
-    }
+        $categorias = Categoriapratos::orderBy('nome')->get();
 
-    public function update(Request $request, $id)
+        return view('pratos.form', ['categorias' => $categorias]);
+    }
+    function validateRequest(Request $request)
     {
         $request->validate([
             'nome' => 'required',
-            'email' => 'required',
-            'telefone' => 'required',
+            'cpf' => 'required',
+            'categoria_id' => 'required',
+            'imagem' => 'nullable|image|mimes:png,jpg,jpeg'
+        ], [
+            'nome.required' => "O :attribute é obrigatório",
+            'cpf.required' => "O :attribute é obrigatório",
+            'categoria_id.required' => "O :attribute é obrigatório",
+            'imagem.image' => "O :attribute é deve ser enviado",
+            'imagem.mimes' => "O :attribute é deve ser das extensões:PNG, JPEG e JPG",
         ]);
-
-        prato::find($id)->update($request->all());
-
-        return redirect('prato');
     }
 
-    public function destroy($id)
+    function store(Request $request)
     {
-        prato::destroy($id);
-        return redirect('prato');
+        $this->validateRequest($request);
+        $data = $request->all();
+        $imagem = $request->file('imagem');
+
+        if ($imagem) {
+            $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
+            $diretorio = "imagem/pratos/";
+            $imagem->storeAs($diretorio, $nome_imagem, 'public');
+
+            $data['imagem'] = $diretorio . $nome_imagem;
+        }
+
+        pratos::create($data);
+
+        return redirect('pratos');
     }
 
-    public function search(Request $request)
+    function edit($id)
     {
-        $pratos = prato::where('nome', 'like', '%' . $request->valor . '%')->get();
+        $dado = pratos::find($id);
+        $categorias = Categoriapratos::orderBy('nome')->get();
 
-        return view('pratos.index', compact('pratos'));
+
+        return view('pratos.form', [
+            'dado' => $dado,
+            'categorias' => $categorias
+        ]);
     }
 
+    function update(Request $request, $id)
+    {
+        $this->validateRequest($request);
+        $data = $request->all();
+        $imagem = $request->file('imagem');
+
+        if ($imagem) {
+            $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
+            $diretorio = "imagem/pratos/";
+            $imagem->storeAs($diretorio, $nome_imagem, 'public');
+
+            $data['imagem'] = $diretorio . $nome_imagem;
+        }
+
+        pratos::find($id)->update($data);
+
+        return redirect('pratos');
+    }
+
+    function destroy($id)
+    {
+        pratos::destroy($id);
+        return redirect('pratos');
+    }
+
+    function search(Request $request)
+    {
+        if (!empty($request->valor)) {
+            $dados = pratos::where(
+                $request->tipo,
+                'like',
+                '%' . $request->valor . '%'
+            )->get();
+        } else {
+            $dados = pratos::all();
+        }
+
+        return view('pratos.list', ['dados' => $dados]);
+    }
 }

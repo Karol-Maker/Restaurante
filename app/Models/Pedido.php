@@ -11,7 +11,7 @@ class Pedido extends Model
 
     protected $fillable = [
         'cliente_id',
-        'prato_id',
+        'pratos_id',
         'quantidade'
     ];
 
@@ -20,8 +20,8 @@ class Pedido extends Model
         return $this->belongsTo(Cliente::class);
     }
 
-    public function prato()
+    public function pratos()
     {
-        return $this->belongsTo(Prato::class);
+        return $this->belongsTo(pratos::class);
     }
 }

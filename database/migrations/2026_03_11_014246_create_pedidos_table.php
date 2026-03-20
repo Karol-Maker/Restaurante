@@ -15,7 +15,7 @@ return new class extends Migration
     $table->id();
 
     $table->foreignId('cliente_id')->constrained()->onDelete('cascade');
-    $table->foreignId('prato_id')->constrained()->onDelete('cascade');
+    $table->foreignId('pratos_id')->constrained()->onDelete('cascade');
 
     $table->integer('quantidade');
 

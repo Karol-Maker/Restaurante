@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Cliente;
-use App\Models\Prato;
+use App\Models\pratos;
 
 class PedidoFactory extends Factory
 {
@@ -12,7 +12,7 @@ class PedidoFactory extends Factory
     {
         return [
             'cliente_id' => Cliente::inRandomOrder()->first()->id,
-            'prato_id' => Prato::inRandomOrder()->first()->id,
+            'pratos_id' => pratos::inRandomOrder()->first()->id,
             'quantidade' => fake()->numberBetween(1, 5),
         ];
     }

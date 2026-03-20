@@ -19,6 +19,7 @@ class ClienteFactory extends Factory
         return [
             'nome' => fake()->name(),
             'telefone' => fake()->phoneNumber(),
+            //  'imagem' => null,
             'email' => fake()->safeEmail(),
         ];
     }
