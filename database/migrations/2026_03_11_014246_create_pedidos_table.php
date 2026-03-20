@@ -11,13 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->id();
-            $table->integer('mesa');
-            $table->date('data');
-            $table->timestamps();
-        });
+       Schema::create('pedidos', function (Blueprint $table) {
+    $table->id();
+
+    $table->foreignId('cliente_id')->constrained()->onDelete('cascade');
+    $table->foreignId('prato_id')->constrained()->onDelete('cascade');
+
+    $table->integer('quantidade');
+
+    $table->timestamps();
+});
     }
+    
 
     /**
      * Reverse the migrations.

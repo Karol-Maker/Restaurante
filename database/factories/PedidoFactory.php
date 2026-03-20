@@ -3,14 +3,17 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Cliente;
+use App\Models\Prato;
 
 class PedidoFactory extends Factory
 {
     public function definition(): array
     {
         return [
-            'data' => $this->faker->date(),
-            'mesa' => $this->faker->numberBetween(1,20),
+            'cliente_id' => Cliente::inRandomOrder()->first()->id,
+            'prato_id' => Prato::inRandomOrder()->first()->id,
+            'quantidade' => fake()->numberBetween(1, 5),
         ];
     }
 }
