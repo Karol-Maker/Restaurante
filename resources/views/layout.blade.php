@@ -54,7 +54,7 @@ href="/clientes">Clientes</a>
 
 <a class="nav-link text-lg fw-semibold text-white 
 {{ request()->is('pratos') ? 'active-link' : '' }}" 
-href="/pratos">Pratos</a>
+href="/pratos">pratos</a>
 
 <a class="nav-link text-lg fw-semibold text-white 
 {{ request()->is('pedidos') ? 'active-link' : '' }}" 

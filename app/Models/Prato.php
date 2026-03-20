@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Pedido;
 
-class Prato extends Model
+class pratos extends Model
 {
     use HasFactory;
-
+    protected $table = 'pratos';
     protected $fillable = [
         'nome',
         'preco',
