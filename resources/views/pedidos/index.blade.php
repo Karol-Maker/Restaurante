@@ -4,7 +4,7 @@
 
 <h2 class="mb-4">Novo Pedido</h2>
 
-<form action="/pedidos" method="POST">
+<form action="/pedido" method="POST">
 
 @csrf
 

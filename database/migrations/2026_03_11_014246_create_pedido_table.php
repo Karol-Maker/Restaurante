@@ -11,24 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('pedidos', function (Blueprint $table) {
-    $table->id();
-
-    $table->foreignId('cliente_id')->constrained()->onDelete('cascade');
-    $table->foreignId('pratos_id')->constrained()->onDelete('cascade');
-
-    $table->integer('quantidade');
-
-    $table->timestamps();
-});
+        Schema::create('pedido', function (Blueprint $table) {
+            $table->id();
+            $table->integer('mesa');
+            $table->date('data');
+            $table->timestamps();
+        });
     }
-    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('pedido');
     }
 };

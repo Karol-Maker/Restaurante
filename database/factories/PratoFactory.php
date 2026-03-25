@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\pratos>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Prato>
  */
-class pratosFactory extends Factory
+class PratoFactory extends Factory
 {
     /**
      * Define the model's default state.

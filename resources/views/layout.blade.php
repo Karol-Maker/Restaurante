@@ -53,12 +53,12 @@ padding:6px 12px;
 href="/clientes">Clientes</a>
 
 <a class="nav-link text-lg fw-semibold text-white 
-{{ request()->is('pratos') ? 'active-link' : '' }}" 
-href="/pratos">pratos</a>
+{{ request()->is('prato') ? 'active-link' : '' }}" 
+href="/prato">prato</a>
 
 <a class="nav-link text-lg fw-semibold text-white 
-{{ request()->is('pedidos') ? 'active-link' : '' }}" 
-href="/pedidos">Pedidos</a>
+{{ request()->is('pedido') ? 'active-link' : '' }}" 
+href="/pedido">pedido</a>
 
 </div>
 

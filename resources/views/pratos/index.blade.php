@@ -3,7 +3,7 @@
 @section('conteudo')
 
 <h2 class="mb-4 text-2xl font-bold text-gray-700">
-🍝 pratos
+🍝 prato
 </h2>
 
 <table class="table table-hover table-striped">
@@ -18,13 +18,13 @@
 
 <tbody>
 
-@foreach($pratos as $pratos)
+@foreach($prato as $prato)
 
 <tr>
-<td>{{ $pratos->id }}</td>
-<td class="fw-semibold">{{ $pratos->nome }}</td>
+<td>{{ $prato->id }}</td>
+<td class="fw-semibold">{{ $prato->nome }}</td>
 <td class="text-success fw-bold">
-R$ {{ $pratos->preco }}
+R$ {{ $prato->preco }}
 </td>
 </tr>
 

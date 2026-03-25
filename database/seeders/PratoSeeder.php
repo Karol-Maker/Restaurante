@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\pratos;
+use App\Models\Prato;
 
-class pratoseeder extends Seeder
+class pratoeeder extends Seeder
 {
     public function run(): void
     {
-        pratos::factory()->count(10)->create();
+        Prato::factory()->count(10)->create();
     }
 }
